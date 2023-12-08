@@ -2,6 +2,14 @@
 
 Development Container for Rye.
 
+## Usage
+
+The following command will download the Dev Container files of this template to the current directory.
+
+```bash
+curl -sSL https://github.com/MtkN1/rye-devcontainer-template/releases/latest/download/artifact.tar.gz | tar -xz
+```
+
 ## Features
 
 - Build a container image that automatically installs Ruff.
