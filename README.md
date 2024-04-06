@@ -12,8 +12,10 @@ curl -sSL https://github.com/MtkN1/rye-devcontainer-template/releases/latest/dow
 
 ## Features
 
-- Build a container image that automatically installs Ruff.
+- Build a container image that automatically installs Rye.
 - Configure system Python for Rye.
+- Setup bash completion.
+- Setup use backend.
 - Automatically initialize the project after opening Dev Container.
 - Other features, configure extensions such as Ruff, specify appropriate Python interpreter paths, etc.
 
