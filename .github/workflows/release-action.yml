@@ -6,7 +6,7 @@ name: Create Release
 on:
   push:
     branches: [ "main" ]
-    paths: [ ".devcontainer/**", "Dockerfile" ]
+    paths: [ ".devcontainer/**" ]
   workflow_dispatch:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -26,7 +26,7 @@ jobs:
       - name: Run tarball compression+
         # Copy file paths from `on.push.paths`
         run: |
-          echo '[ ".devcontainer/**", "Dockerfile" ]' | tar -czvf ./artifact.tar.gz $(jq -r 'join(" ")')
+          echo '[ ".devcontainer/**" ]' | tar -czvf ./artifact.tar.gz $(jq -r 'join(" ")')
 
       - name: Set properties
         id: properties
