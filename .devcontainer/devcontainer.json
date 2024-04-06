@@ -3,19 +3,23 @@
 {
 	"name": "${containerWorkspaceFolderBasename}",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"build": {
-		"dockerfile": "../Dockerfile",
-		"target": "devcontainer"
-	},
+	"image": "mcr.microsoft.com/devcontainers/python:3.12-bookworm",
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
-	// "features": {},
+	"features": {
+		"ghcr.io/devcontainers-contrib/features/apt-get-packages:1": {
+			"packages": "bash-completion"
+		},
+		"./local-features/rye": {
+			"version": "latest"
+		}
+	},
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "./.devcontainer/post-create.sh",
+	"postCreateCommand": "test -f pyproject.toml || rye init && rye sync",
 
 	// Configure tool-specific properties.
 	"customizations": {
@@ -23,19 +27,20 @@
 			"settings": {
 				"python.defaultInterpreterPath": "${containerWorkspaceFolder}/.venv/bin/python",
 				"[python]": {
-					"editor.formatOnSave": true,
 					"editor.codeActionsOnSave": {
-					  "source.fixAll": true,
-					  "source.organizeImports": true
+						"source.fixAll": "explicit",
+						"source.organizeImports": "explicit"
 					},
-					"editor.defaultFormatter": "charliermarsh.ruff"
-				  }
+					"editor.defaultFormatter": "charliermarsh.ruff",
+					"editor.formatOnSave": true,
+					"editor.rulers": [
+						88
+					]
+				}
 			},
 			"extensions": [
-				"GitHub.vscode-pull-request-github",
-				"be5invis.toml",
 				"charliermarsh.ruff",
-				"eamodio.gitlens"
+				"tamasfe.even-better-toml"
 			]
 		}
 	}
